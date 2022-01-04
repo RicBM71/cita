@@ -1,9 +1,9 @@
 <?php
 
 use App\Models\Cita;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -23,13 +23,15 @@ Route::get('/test', function () {
 
 })->name('test');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified', 'lortad'])->get('dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->get('lortad', [App\Http\Controllers\LortadController::class, 'index'])->name('lortad');
+Route::middleware(['auth:sanctum', 'verified'])->put('lortad', [App\Http\Controllers\LortadController::class, 'update'])->name('lortad.update');
 
 Route::group([
     'prefix'     => 'admin',
     // 'namespace' => 'Mto',
     //'middleware' => ['auth:sanctum','verified','password.confirm']],
-    'middleware' => ['auth:sanctum', 'verified', 'role:root']],
+    'middleware' => ['auth:sanctum', 'verified', 'lortad', 'role:root']],
     function () {
 
         //Route::middleware('password.confirm')->resource('users', App\Http\Controllers\Admin\UsersController::class);
@@ -46,7 +48,7 @@ Route::group([
     }
 );
 
-Route::middleware(['auth:sanctum', 'verified'])->get('book/{fecha}/{turno}', [App\Http\Controllers\ReservasController::class, 'index'])->name('book');
-Route::middleware(['auth:sanctum', 'verified'])->post('book/create', [App\Http\Controllers\ReservasController::class, 'store'])->name('book.store');
-Route::middleware(['auth:sanctum', 'verified'])->delete('book/{cita}', [App\Http\Controllers\ReservasController::class, 'destroy'])->name('book.destroy');
+Route::middleware(['auth:sanctum', 'verified', 'lortad'])->get('book/{fecha}/{turno}', [App\Http\Controllers\ReservasController::class, 'index'])->name('book');
+Route::middleware(['auth:sanctum', 'verified', 'lortad'])->post('book/create', [App\Http\Controllers\ReservasController::class, 'store'])->name('book.store');
+Route::middleware(['auth:sanctum', 'verified', 'lortad'])->delete('book/{cita}', [App\Http\Controllers\ReservasController::class, 'destroy'])->name('book.destroy');
 //Route::resource('book', App\Http\Controllers\Admin\ReservasController::class);
