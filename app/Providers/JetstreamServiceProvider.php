@@ -64,6 +64,13 @@ class JetstreamServiceProvider extends ServiceProvider
                 $user->update($data);
 
                 return $user;
+            } else {
+                activity()
+                    ->withProperties([
+                        'email' => $request->email,
+                        'ip'    => $request->ip(),
+                    ])
+                    ->log('Fail Login');
             }
         });
     }
