@@ -29,6 +29,8 @@ class CreateUsersTable extends Migration
             $table->unsignedInteger('paciente_id')->nullable()->unique();
             $table->unsignedInteger('facultativo_id')->nullable();
             $table->dateTime('lortad')->nullable();
+            $table->smallInteger('citas')->default(1);
+            $table->boolean('bono')->default(true);
             $table->string('username_umod', 30)->nullable();
             $table->softDeletes();
             $table->timestamps();
