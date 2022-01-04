@@ -5,9 +5,7 @@
                 <v-flex>
                     <v-card class="mx-auto" max-width="600">
                         <v-toolbar color="primary" dark>
-                            <v-toolbar-title
-                                >Olvidaste tu contraseña?</v-toolbar-title
-                            >
+                            <v-toolbar-title>Olvidaste tu contraseña?</v-toolbar-title>
                             <v-spacer></v-spacer>
                             <v-btn icon @click="home">
                                 <v-icon>mdi-home-outline</v-icon>
@@ -15,17 +13,11 @@
                         </v-toolbar>
                         <v-container fluid id="container">
                             <v-card-text>
-                                 <v-alert
-                                    v-if="status"
-                                    color="green lighten-2"
-                                    dark
-                                >
+                                <v-alert v-if="status" color="green lighten-2" dark>
                                     {{ status }}
-
-                                    </v-alert>
+                                </v-alert>
                                 <p v-else>
-                                    Introduce tu email de registro y te proporcionaremos
-                                    un link para establecer una nueva contraseña...
+                                    Introduce tu email de registro y te proporcionaremos un link para establecer una nueva contraseña...
                                 </p>
                                 <v-form>
                                     <v-row>
@@ -45,11 +37,7 @@
                                         <v-col cols="7"> </v-col>
                                         <v-col cols="4">
                                             <v-spacer></v-spacer>
-                                            <v-btn
-                                                small
-                                                @click="submit"
-                                                :loading="form.processing"
-                                            >
+                                            <v-btn small @click="submit" :loading="form.processing">
                                                 Enviar link
                                             </v-btn>
                                         </v-col>
@@ -64,31 +52,30 @@
     </v-app>
 </template>
 <script>
-import HomeLayout from '@/Components/Layout/HomeLayout'
+import HomeLayout from '@/Components/Layout/HomeLayout';
 export default {
     props: {
         status: String,
     },
-    components:{HomeLayout},
+    components: { HomeLayout },
     layout: HomeLayout,
     data() {
         return {
             form: this.$inertia.form({
-                email: "",
+                email: '',
             }),
         };
     },
 
     methods: {
         home() {
-            this.$inertia.get(route("home"));
+            this.$inertia.get(route('home'));
         },
         submit() {
             this.$validator.validateAll().then((result) => {
                 if (result) {
-                    this.form.post(this.route("password.email"), {
+                    this.form.post(this.route('password.email'), {
                         onFinish: () => {
-
                             const msg_valid = this.form.errors;
                             for (const prop in msg_valid) {
                                 this.errors.add({
