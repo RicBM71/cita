@@ -1,18 +1,17 @@
 <?php
 
 use App\Models\Cita;
-use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Foundation\Application;
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin'       => Route::has('login'),
-        'canRegister'    => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion'     => PHP_VERSION,
-    ]);
-})->name('home');
+// Route::get('/', function () {
+//     return Inertia::render('Welcome', [
+//         'canLogin'       => Route::has('login'),
+//         'canRegister'    => Route::has('register'),
+//         'laravelVersion' => Application::VERSION,
+//         'phpVersion'     => PHP_VERSION,
+//     ]);
+// })->name('home');
+Route::middleware(['auth:sanctum', 'verified', 'lortad'])->get('/', [App\Http\Controllers\DashboardController::class, 'index'])->name('home');
 
 Route::get('/test', function () {
 
