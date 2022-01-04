@@ -84,7 +84,8 @@ export default {
 
     methods: {
         home() {
-            this.$inertia.get(route('home'));
+            //this.$inertia.get(route('home'));
+            window.location.href = 'https://sanaval.com';
         },
         submit() {
             if (this.loading === false) {
