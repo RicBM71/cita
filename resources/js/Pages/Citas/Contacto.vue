@@ -28,7 +28,7 @@
                             <v-icon color="green">mdi-whatsapp</v-icon>
                         </v-list-item-icon>
                         <v-list-item-title class="font-weight-medium">
-                            <a class="body-1 text-decoration-none black--text" href="tel:+34634 23 48 15">634 23 48 15</a>
+                            <a class="body-1 text-decoration-none black--text" href="#" @click="sendWhatsApp">634 23 48 15</a>
                         </v-list-item-title>
                     </v-list-item>
                     <v-list-item>
@@ -46,7 +46,15 @@
 </template>
 
 <script>
-export default {};
+export default {
+    methods: {
+        sendWhatsApp() {
+            const ws = 'https://api.whatsapp.com/send?phone=34634234815';
+
+            window.open(ws, 'Enviar WhatsApp', 'toolbar=no,resizable=no, width=400, height=500, scrollbar=no, status=no');
+        },
+    },
+};
 </script>
 
 <style></style>
