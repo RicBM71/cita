@@ -42,15 +42,15 @@
                                         </v-col>
                                     </v-row>
                                     <v-row>
-                                        <v-col cols="9">
+                                        <v-col cols="8">
                                             <inertia-link v-if="canResetPassword" :href="route('password.request')">
                                                 Olvidaste tu contraseña?
                                             </inertia-link>
                                         </v-col>
                                         <v-col cols="2">
-                                            <v-spacer></v-spacer>
-                                            <v-btn small @click="submit" :loading="form.processing">
-                                                Login
+                                            <v-btn outlined color="primary" rounded @click="submit" :loading="form.processing">
+                                                <v-icon>mdi-login</v-icon>
+                                                Entrar
                                             </v-btn>
                                         </v-col>
                                     </v-row>

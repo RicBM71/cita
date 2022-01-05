@@ -2,10 +2,7 @@ require('./bootstrap');
 
 // Import modules...
 import Vue from 'vue';
-import {
-    App as InertiaApp,
-    plugin as InertiaPlugin,
-} from '@inertiajs/inertia-vue';
+import { App as InertiaApp, plugin as InertiaPlugin } from '@inertiajs/inertia-vue';
 import PortalVue from 'portal-vue';
 //add these two line
 import Vuetify from 'vuetify';
@@ -40,6 +37,14 @@ Vue.use(Vuetify);
 import es from 'vuetify/src/locale/es.ts';
 
 const opts = {
+    theme: {
+        themes: {
+            light: {
+                primary: '#00838F',
+                secondary: 'E0F2F1',
+            },
+        },
+    },
     lang: {
         locales: { es },
         current: 'es',
@@ -120,8 +125,7 @@ new Vue({
                 resolveComponent: function(name) {
                     const page = require(`./Pages/${name}`).default;
                     //console.log(page.layout);
-                    if (page.layout != null || page.layout == undefined)
-                        page.layout = page.layout || AppLayout;
+                    if (page.layout != null || page.layout == undefined) page.layout = page.layout || AppLayout;
                     return page;
                 },
                 //resolveComponent: (name) => require(`./Pages/${name}`).default,

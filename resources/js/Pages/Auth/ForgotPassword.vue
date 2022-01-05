@@ -3,7 +3,7 @@
         <v-container class="mt-12">
             <v-layout row wrap align-center>
                 <v-flex>
-                    <v-card class="mx-auto" max-width="600">
+                    <v-card class="mx-auto" min-width="300" max-width="600">
                         <v-toolbar flat>
                             <v-toolbar-title>Olvidaste tu contraseña?</v-toolbar-title>
                             <v-spacer></v-spacer>
@@ -13,10 +13,14 @@
                         </v-toolbar>
                         <v-container fluid id="container">
                             <v-card-text>
-                                <v-alert v-if="status" color="green lighten-2" dark>
-                                    {{ status }}
-                                </v-alert>
-                                <p v-else>
+                                <v-row v-show="status">
+                                    <v-col cols="12">
+                                        <v-alert type="success" outlined>
+                                            {{ status }}
+                                        </v-alert>
+                                    </v-col>
+                                </v-row>
+                                <p>
                                     Introduce tu email de registro y te proporcionaremos un link para establecer una nueva contraseña...
                                 </p>
                                 <v-form>
@@ -37,7 +41,7 @@
                                         <v-col cols="7"> </v-col>
                                         <v-col cols="4">
                                             <v-spacer></v-spacer>
-                                            <v-btn small @click="submit" :loading="form.processing">
+                                            <v-btn outlined color="primary" @click="submit" :loading="form.processing">
                                                 Enviar link
                                             </v-btn>
                                         </v-col>

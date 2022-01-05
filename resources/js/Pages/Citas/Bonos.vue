@@ -1,7 +1,7 @@
 <template>
     <v-col cols="12" md="3" lg="3">
         <v-card max-width="450" class="mx-auto">
-            <v-toolbar dense color="cyan lighten-5">
+            <v-toolbar dense color="secondary">
                 <v-toolbar-title>Bono</v-toolbar-title>
             </v-toolbar>
             <v-card-text>

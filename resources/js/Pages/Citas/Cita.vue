@@ -2,7 +2,7 @@
     <v-col cols="12" md="3" lg="3">
         <my-dialog :dialog.sync="dialog" @destroyReg="destroyReg"></my-dialog>
         <v-card max-width="450" class="mx-auto">
-            <v-toolbar dense color="cyan lighten-5">
+            <v-toolbar dense color="secondary">
                 <v-toolbar-title>Próxima cita</v-toolbar-title>
             </v-toolbar>
             <!-- <v-img v-if="ultima_cita.bono.numero_bono == null" src="/assets/bono3.jpg"> -->
@@ -38,7 +38,7 @@
             </v-list-item>
 
             <v-card-actions class="pb-5 d-flex justify-center">
-                <v-btn @click="openDialog()" dark color="red" small rounded :loading="loading">Cancelar Cita</v-btn>
+                <v-btn @click="openDialog()" class="red--text" large outlined rounded :loading="loading">Cancelar Cita</v-btn>
             </v-card-actions>
             <!-- </v-img> -->
         </v-card>

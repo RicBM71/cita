@@ -1,14 +1,14 @@
 <template>
     <v-col cols="12" md="3" lg="3">
         <v-card max-width="450" class="mx-auto">
-            <v-toolbar dense color="cyan lighten-5">
+            <v-toolbar dense color="secondary">
                 <v-toolbar-title>Nueva cita</v-toolbar-title>
             </v-toolbar>
             <v-card-text v-if="!edita" class="d-flex justify-center">
                 <v-container>
                     <v-row>
                         <v-col cols="12" class="d-flex justify-center">
-                            <v-btn v-if="!area.bloqueado" class="blue--text" large outlined rounded @click="goCreate"
+                            <v-btn v-if="!area.bloqueado" class="primary--text" large outlined rounded @click="goCreate"
                                 ><v-icon>mdi-plus</v-icon>Solicitar Cita</v-btn
                             >
                             <v-alert v-else outlined type="info"
