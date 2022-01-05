@@ -28,7 +28,13 @@
                             <v-icon color="green">mdi-whatsapp</v-icon>
                         </v-list-item-icon>
                         <v-list-item-title class="font-weight-medium">
-                            <a class="body-1 text-decoration-none black--text" href="#" @click="sendWhatsApp">634 23 48 15</a>
+                            <a
+                                v-if="$vuetify.breakpoint.mobile"
+                                class="body-1 text-decoration-none black--text"
+                                href="https://api.whatsapp.com/send?phone=34634234815"
+                                >634 23 48 15</a
+                            >
+                            <a v-else class="body-1 text-decoration-none black--text" href="#" @click="sendWhatsApp">634 23 48 15</a>
                         </v-list-item-title>
                     </v-list-item>
                     <v-list-item>

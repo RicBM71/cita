@@ -44,20 +44,20 @@
                                         </v-col>
                                     </v-row>
                                     <v-row>
-                                        <v-col cols="8">
+                                        <v-col cols="8" sm="12" lg="8">
                                             <inertia-link v-if="canResetPassword" :href="route('password.request')">
                                                 Olvidaste tu contraseña?
                                             </inertia-link>
                                         </v-col>
-                                        <v-col cols="2">
-                                            <v-btn outlined color="primary" rounded @click="submit" :loading="form.processing">
+                                        <v-col cols="12" sm="12" lg="2">
+                                            <v-btn block outlined color="primary" rounded @click="submit" :loading="form.processing">
                                                 <v-icon>mdi-login</v-icon>
                                                 Entrar
                                             </v-btn>
                                         </v-col>
                                     </v-row>
                                 </v-form>
-                                <div class="mt-3 text-caption text-center">
+                                <div class="mt-5 text-caption text-center">
                                     * Servicio sólo disponible para pacientes previamente autorizados.
                                 </div>
                             </v-card-text>
