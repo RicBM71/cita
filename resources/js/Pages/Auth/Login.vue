@@ -3,9 +3,11 @@
         <v-container class="mt-12">
             <v-layout row wrap align-center>
                 <v-flex>
-                    <v-card class="mx-auto" max-width="600">
-                        <v-toolbar color="primary" dark>
-                            <v-toolbar-title>Credenciales</v-toolbar-title>
+                    <v-card class="mx-auto" max-width="600" elevation="1" shaped>
+                        <v-toolbar flat>
+                            <v-toolbar-title
+                                ><v-avatar tile><v-img src="assets/logo_ico.png"></v-img></v-avatar>Autocita Sanaval</v-toolbar-title
+                            >
                             <v-spacer></v-spacer>
                             <v-btn icon @click="home">
                                 <v-icon>mdi-home-outline</v-icon>
@@ -53,6 +55,9 @@
                                         </v-col>
                                     </v-row>
                                 </v-form>
+                                <div class="mt-3 text-caption text-center">
+                                    * Servicio sólo disponible para pacientes previamente autorizados.
+                                </div>
                             </v-card-text>
                         </v-container>
                     </v-card>
