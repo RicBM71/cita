@@ -14,9 +14,8 @@
                     tile
                 >
                     <v-card class="pr-8 text-h6 justify-right" flat>
-                        <span class="purple--text text-darken-4">BONO {{ bonos.bono }} </span><br />
-                        ( {{ bonos.usadas }} de {{ bonos.sesiones }} )
-                        <br />
+                        <span class="purple--text text-darken-4">BONO ACTIVO </span><br />
+                        <h5>{{ bonos.sesiones }} sesiones</h5>
                         <span class="text-caption">Caducidad: {{ bonos.fecha_caducidad }} </span><br />
                     </v-card>
                 </v-card>
@@ -29,26 +28,6 @@
                     </template>
                     <span>{{ cita.nombre }} - {{ cita.hora }}</span>
                 </v-tooltip>
-
-                <!-- <v-row align="end" class="fill-height">
-                    <v-col align-self="start" class="pa-0" cols="12">
-                        <v-list-group v-for="(item, i) in bonos" :key="i" link :value="false" no-action sub-group>
-                            <template v-slot:activator>
-                                <v-list-item-content>
-                                    <v-list-item-title>
-                                        <span v-if="!item.caducado" class="font-weight-bold">
-                                            Bono {{ getDate(item.fecha_bono) }} - Caduca: {{ item.fecha_caducidad }}
-                                        </span>
-                                        <span v-else class="font-weight-bold"> Bono {{ getDate(item.fecha_bono) }}</span>
-                                    </v-list-item-title>
-                                </v-list-item-content>
-                            </template>
-                            <v-list-item v-for="(cita, i) in item.citas" :key="i" link>
-                                <v-list-item-title>{{ cita.fecha }} - {{ cita.nombre }}</v-list-item-title>
-                            </v-list-item>
-                        </v-list-group>
-                    </v-col>
-                </v-row> -->
             </v-card-text>
         </v-card>
     </v-col>

@@ -5,7 +5,7 @@
                 <v-flex>
                     <v-card class="mx-auto" max-width="600">
                         <v-toolbar flat>
-                            <v-toolbar-title>Olvidaste tu contraseña?</v-toolbar-title>
+                            <v-toolbar-title>¿Olvidaste tu contraseña?</v-toolbar-title>
                             <v-spacer></v-spacer>
                             <v-btn icon @click="home">
                                 <v-icon>mdi-home-outline</v-icon>
@@ -34,8 +34,10 @@
                                                 :error-messages="errors.collect('password')"
                                                 data-vv-name="password"
                                                 data-vv-as="password"
-                                                type="password"
-                                                @keyup.enter="submit"
+                                                :type="showPassword ? 'text' : 'password'"
+                                                :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                                                v-on:keyup.enter="submit"
+                                                @click:append="showPassword = !showPassword"
                                             ></v-text-field>
                                         </v-col>
                                         <v-col cols="12">
@@ -46,8 +48,10 @@
                                                 :error-messages="errors.collect('password_confirmation')"
                                                 data-vv-name="password_confirmation"
                                                 data-vv-as="password_confirmation"
-                                                type="password"
-                                                @keyup.enter="submit"
+                                                :type="showPassword ? 'text' : 'password'"
+                                                :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                                                v-on:keyup.enter="submit"
+                                                @click:append="showPassword = !showPassword"
                                             ></v-text-field>
                                         </v-col>
                                     </v-row>
@@ -81,6 +85,7 @@ export default {
     layout: HomeLayout,
     data() {
         return {
+            showPassword: false,
             form: this.$inertia.form({
                 token: this.token,
                 email: this.email,

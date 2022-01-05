@@ -36,8 +36,10 @@
                                                 :error-messages="errors.collect('password')"
                                                 data-vv-name="password"
                                                 data-vv-as="password"
-                                                type="password"
+                                                :type="showPassword ? 'text' : 'password'"
+                                                :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
                                                 v-on:keyup.enter="submit"
+                                                @click:append="showPassword = !showPassword"
                                             ></v-text-field>
                                         </v-col>
                                     </v-row>
@@ -79,6 +81,7 @@ export default {
     data() {
         return {
             loading: false,
+            showPassword: false,
             form: this.$inertia.form({
                 email: '',
                 password: '',
