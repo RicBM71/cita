@@ -15,7 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('username', 30)->unique();
+            $table->string('username', 50)->unique();
             $table->string('name');
             $table->string('lastname')->nullable();
             $table->string('email')->unique();
@@ -31,7 +31,7 @@ class CreateUsersTable extends Migration
             $table->dateTime('lortad')->nullable();
             $table->smallInteger('citas')->default(1);
             $table->boolean('bono')->default(true);
-            $table->string('username_umod', 30)->nullable();
+            $table->string('username_umod', 50)->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
