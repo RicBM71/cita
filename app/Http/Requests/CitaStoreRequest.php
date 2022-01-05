@@ -2,8 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\Citas\FestivoRule;
 use App\Rules\Citas\HoraRule;
+use App\Rules\Citas\FestivoRule;
+use App\Rules\Citas\HoraAreaRule;
 use App\Rules\Citas\HoraUnicaRule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -27,10 +28,14 @@ class CitaStoreRequest extends FormRequest
     public function rules()
     {
         return [
+            'empresa_id'     => ['required', 'integer'],
+            'area_id'        => ['required', 'integer'],
             'tratamiento_id' => ['required', 'integer'],
             'facultativo_id' => ['required', 'integer'],
+            'duracion_total' => ['required', 'integer'],
+            'area_id'        => ['required', 'integer'],
             'fecha'          => ['required', 'date', new FestivoRule()],
-            'hora'           => ['required', new HoraRule($this->fecha, $this->facultativo_id), new HoraUnicaRule($this)],
+            'hora'           => ['required', new HoraRule($this->fecha, $this->facultativo_id), new HoraUnicaRule($this), new HoraAreaRule($this)],
         ];
 
     }

@@ -35,16 +35,13 @@ class ReservasController extends Controller
     public function store(CitaStoreRequest $request)
     {
 
-        $input = $request->validated();
-
         $area = Area::findOrFail(1);
 
         if ($area->bloqueo_citas_online) {
             return abort(403, 'No esta activado el servicio de citas online, contacta telefónicamente. Disculpa las molestias');
         }
 
-        $input['empresa_id'] = 1;
-        $input['area_id']    = 1;
+        $input = $request->validated();
 
         $input['paciente_id']  = auth()->user()->paciente_id;
         $input['estado_id']    = 1;

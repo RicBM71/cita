@@ -23,7 +23,7 @@ class Tratamiento extends Model
     public static function selTratamientos($con_bono = null)
     {
 
-        return Tratamiento::select('id AS value', 'nombre_web AS text')
+        return Tratamiento::select('id AS value', 'nombre_web AS text', 'duracion_manual', 'duracion_aparatos')
             ->where('activo', true)
             ->where('web', true)
             ->orderBy('nombre_web', 'asc')

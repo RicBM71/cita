@@ -19,7 +19,10 @@
                     </v-row>
                     <v-row>
                         <v-col cols="12">
-                            <h4>* Si requieres de una cita antes del {{ getDate(start) }} contacta telefónicamente o por WhatsApp.</h4>
+                            <div class="cation blue-grey--text text--darken-3 text-justify">
+                                * Si requieres de una cita antes del <b>{{ getDate(start) }}</b> contacta telefónicamente o por WhatsApp e
+                                intentaremos concertar tu cita lo antes posible.
+                            </div>
                         </v-col>
                     </v-row>
                 </v-container>
@@ -130,10 +133,13 @@ export default {
             loading: true,
             message: null,
             form: this.$inertia.form({
+                empresa_id: 1,
+                area_id: 1,
                 hora: null,
                 fecha: null, //new Date().toISOString().substr(0, 10),
                 tratamiento_id: null,
                 facultativo_id: null,
+                duracion_total: 0,
             }),
         };
     },
@@ -184,6 +190,10 @@ export default {
         },
         store() {
             this.loading = true;
+
+            const index = this.tratamientos.findIndex((t) => t.value == this.form.tratamiento_id);
+
+            this.form.duracion_total = this.tratamientos[index].duracion_manual + this.tratamientos[index].duracion_aparatos;
 
             this.form.post(route('book.store'), {
                 preserveScroll: true,

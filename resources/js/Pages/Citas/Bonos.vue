@@ -16,7 +16,7 @@
                     <v-card class="pr-8 text-h6 justify-right" flat>
                         <span class="purple--text text-darken-4">BONO ACTIVO </span><br />
                         <h5>{{ bonos.sesiones }} sesiones</h5>
-                        <span class="text-caption">Caducidad: {{ bonos.fecha_caducidad }} </span><br />
+                        <span class="text-caption font-weight-medium">Caduca: {{ bonos.fecha_caducidad }} </span><br />
                     </v-card>
                 </v-card>
 

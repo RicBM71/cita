@@ -6,11 +6,12 @@
                     <v-card class="mx-auto" max-width="600" elevation="1" shaped>
                         <v-toolbar flat>
                             <v-toolbar-title
-                                ><v-avatar tile><v-img src="assets/logo_ico.png"></v-img></v-avatar>Autocita Sanaval</v-toolbar-title
+                                ><v-avatar tile><v-img src="assets/logo_ico.png"></v-img></v-avatar
+                                ><span class="primary--text">Sanaval</span></v-toolbar-title
                             >
                             <v-spacer></v-spacer>
                             <v-btn icon @click="home">
-                                <v-icon>mdi-home-outline</v-icon>
+                                <v-icon class="primary--text">mdi-home-outline</v-icon>
                             </v-btn>
                         </v-toolbar>
                         <v-container fluid>
