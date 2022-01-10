@@ -19,7 +19,7 @@
                                 <span class="text-h6 font-weight-black mt-4 text-center">
                                     {{ ultima_cita.nombre_web }}
 
-                                    {{ getCurrencyFormat(ultima_cita.importe) }}
+                                    <!-- {{ getCurrencyFormat(ultima_cita.importe) }} -->
                                 </span>
                             </v-col>
                         </v-row>

@@ -17,6 +17,14 @@
 
                 <slot></slot>
             </v-container>
+            <v-footer padless color="white">
+                <v-col class="text-center primary--text" cols="12">
+                    &copy; {{ new Date().getFullYear() }} —
+                    <span>
+                        Centro de fisioterapia Sanaval
+                    </span></v-col
+                >
+            </v-footer>
         </v-main>
 
         <!-- Modal Portal -->

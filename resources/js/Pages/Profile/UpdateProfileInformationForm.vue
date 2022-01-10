@@ -47,6 +47,7 @@
 
                 <!-- Email -->
                 <v-text-field
+                    readonly
                     outlined
                     autocomplete="email"
                     label="Email"
