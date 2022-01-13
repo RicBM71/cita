@@ -146,8 +146,10 @@ class ReservasController extends Controller
 
         $area = Area::findOrFail(1);
 
+        $bloqueo_dia_area = $area->getDiaBlockOnline(Carbon::parse($fecha)->dayOfWeek);
+
         $hora_apertura = Carbon::parse($fecha . $area->hora1);
-        $hora_cierre   = Carbon::parse($fecha . $area->hora2);
+        $hora_cierre   = Carbon::parse($fecha . $area->hora4);
         $frecuencia    = 30; // minutos
 
         // no damos la última hora. 20h -> 19:30
@@ -205,7 +207,18 @@ class ReservasController extends Controller
 
             $turno = $hl >= $area->tarde ? 'T' : 'M';
 
-            $horas[] = ['text' => $hora_actual, 'value' => $hora_actual, 'turno' => $turno];
+            $hora_bloqueada = false;
+            if ($bloqueo_dia_area == 1 && $turno == 'M') {
+                $hora_bloqueada = true;
+            } else if ($bloqueo_dia_area == 2 && $turno == 'T') {
+                $hora_bloqueada = true;
+            } else if ($bloqueo_dia_area == 3) {
+                $hora_bloqueada = true;
+            }
+
+            if (!$hora_bloqueada) {
+                $horas[] = ['text' => $hora_actual, 'value' => $hora_actual, 'turno' => $turno];
+            }
 
             $hora_apertura->addMinutes($frecuencia);
         }

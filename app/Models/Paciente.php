@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Paciente extends Model
 {
@@ -17,46 +17,7 @@ class Paciente extends Model
 
         'nombre',
         'apellidos',
-        'direccion',
-        'cpostal',
-        'poblacion',
-        'provincia',
-        'telefono1',
-        'telefono2',
-        'telefonom',
-        'notificar',
-        'texto_tf2',
         'email',
-        'cif',
-        'sexo',
-        'fecha_nacimiento',
-        'descuento',
-        'porcentual',
-        'profesion',
-        'tarifa_reducida',
-        'mutua_id',
-        'fecha_baja',
-        'exportar',
-        'riesgo',
-        'notas1',
-        'notas2',
-        'medio_id',
-        'recomendado_id',
-        'ant1',
-        'ant2',
-        'ant3',
-        'ant4',
-        'ant5',
-        'ant6',
-        'antobs',
-        'embarazada',
-        'peso',
-        'altura',
-        'lortad_evo',
-        'lortad_fide',
-        'notas_adm',
-        'espera',
-        'factura_auto',
         'username',
 
     ];
@@ -115,38 +76,36 @@ class Paciente extends Model
         return $this->hasMany(Adjunto::class);
     }
 
-    public static function getPrecioTratamiento($paciente_id,$tratamiento_id){
+    public static function getPrecioTratamiento($paciente_id, $tratamiento_id)
+    {
 
-		if ($tratamiento_id==null) return 0;
+        if ($tratamiento_id == null) {
+            return 0;
+        }
 
         $paciente = Paciente::findOrFail($paciente_id);
 
         $tratamiento = Tratamiento::with('iva')->findOrFail($tratamiento_id);
 
+        $paciente->tarifa_reducida == true ? $base = $tratamiento->importe_reducido : $base = $tratamiento->importe;
 
-		$paciente->tarifa_reducida == true ? $base = $tratamiento->importe_reducido : $base = $tratamiento->importe;
+        // calcular precio en base a descuentos
+        if ($paciente->descuento != 0) { // hay descuento
+            if ($paciente->porcentual) { // es %
+                $dto    = round($base * (float) $paciente->descuento / 100, 2);
+                $precio = $base - $dto;
+            } else { // es directo
+                $precio = $base - (float) $paciente->descuento;
+            }
+        } else {
+            $precio = $base;
+        }
 
-		// calcular precio en base a descuentos
-		if ($paciente->descuento <> 0){ // hay descuento
-			if ($paciente->porcentual){ // es %
-				$dto = round($base * (float) $paciente->descuento / 100, 2);
-				$precio = $base - $dto;
-			}
-			else{ // es directo
-				$precio = $base - (float) $paciente->descuento;
-			}
-		}
-		else{
-			$precio = $base;
-		}
+        return array('bono' => null,
+            'importe'           => $precio,
+            'iva'               => $tratamiento->iva->importe,
+            'importe_ponderado' => $precio);
 
-        return array('bono'     => null,
-                    'importe'   => $precio,
-                    'iva'       => $tratamiento->iva->importe,
-                    'importe_ponderado'   => $precio);
-
-
-
-	}
+    }
 
 }

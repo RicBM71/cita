@@ -8,11 +8,7 @@ class Area extends Model
 {
     protected $connection = 'mysql2';
 
-    protected $fillable = [
-
-        'nombre', 'hora1', 'hora2', 'tarde', 'activo', 'frecuencia', 'username', 'dias_online', 'bloqueo_citas_online', 'bloqueo_minutos',
-
-    ];
+    protected $fillable = [];
 
     public static function selAreas()
     {
@@ -20,6 +16,12 @@ class Area extends Model
         return Area::select('id AS value', 'nombre AS text')
             ->get();
 
+    }
+
+    public function getDiaBlockOnline($dia)
+    {
+        $bloqueos = str_split($this->lock_date_online);
+        return $bloqueos[$dia];
     }
 
 }

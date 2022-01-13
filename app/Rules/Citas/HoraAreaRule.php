@@ -37,11 +37,10 @@ class HoraAreaRule implements Rule
         //    $k1 = $hora->format('d-m-Y H:i:s');
         //    $k2 = $hora_tarde->format('d-m-Y H:i:s');
 
-        // TODO: crear horario tarde en areas para quitar lo de las 14h.
         if ($hora <= $hora_tarde) {
-            $hora_cierre = Carbon::parse($this->cita->fecha . ' 14:00:00');
-        } else {
             $hora_cierre = Carbon::parse($this->cita->fecha . ' ' . $area->hora2)->addMinutes($area->frecuencia);
+        } else {
+            $hora_cierre = Carbon::parse($this->cita->fecha . ' ' . $area->hora4)->addMinutes($area->frecuencia);
         }
 
         //    $k3 = $hora_cierre->format('d-m-Y H:i:s');
