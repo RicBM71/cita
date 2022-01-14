@@ -41,7 +41,7 @@ class PacienteResource extends JsonResource
             'tratamiento_id' => $citas['tratamiento_id'],
             'tratamientos'   => $this->getTratamientos(),
             'fecha_min'      => Carbon::today()->addDays($this->area->dias_online),
-            'fecha_max'      => Carbon::today()->addDays(7 * 5),
+            'fecha_max'      => Carbon::today()->addDays($this->area->dias_max_online),
             'area'           => $area,
         ];
 
