@@ -25,8 +25,7 @@ class PacienteResource extends JsonResource
 
         $this->area = Area::findOrFail(1);
 
-        $resto_dias      = $this->area->dias_max_online / 7;
-        $dias_max_online = $this->area->dias_online + $this->area->dias_max_online + ($resto_dias * 2); // sumo días fin de semana.
+        $dias_max_online = $this->area->dias_online + ($this->area->semanas_max_online * 7);
 
         $area = [
             'bloqueado' => $this->area->bloqueo_citas_online,
