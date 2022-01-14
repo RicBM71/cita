@@ -25,6 +25,9 @@ class PacienteResource extends JsonResource
 
         $this->area = Area::findOrFail(1);
 
+        $resto_dias      = $this->area->dias_max_online / 7;
+        $dias_max_online = $this->area->dias_online + $this->area->dias_max_online + ($resto_dias * 2); // sumo días fin de semana.
+
         $area = [
             'bloqueado' => $this->area->bloqueo_citas_online,
             'demora'    => $this->area->bloqueo_minutos,
@@ -41,7 +44,7 @@ class PacienteResource extends JsonResource
             'tratamiento_id' => $citas['tratamiento_id'],
             'tratamientos'   => $this->getTratamientos(),
             'fecha_min'      => Carbon::today()->addDays($this->area->dias_online),
-            'fecha_max'      => Carbon::today()->addDays($this->area->dias_max_online),
+            'fecha_max'      => Carbon::today()->addDays($dias_max_online),
             'area'           => $area,
         ];
 
