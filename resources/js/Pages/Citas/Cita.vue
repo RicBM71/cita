@@ -18,9 +18,13 @@
                             <v-col cols="12">
                                 <span class="text-h6 font-weight-black mt-4 text-center">
                                     {{ ultima_cita.nombre_web }}
-
                                     <!-- {{ getCurrencyFormat(ultima_cita.importe) }} -->
                                 </span>
+                            </v-col>
+                        </v-row>
+                        <v-row v-if="ultima_cita.facultativo != null">
+                            <v-col cols="12" class="pa-0">
+                                <span class="caption text-center grey--text text--darken-2"> ({{ ultima_cita.facultativo }}) </span>
                             </v-col>
                         </v-row>
                         <v-row class="mt-3" v-if="ultima_cita.notifica_web == 1">

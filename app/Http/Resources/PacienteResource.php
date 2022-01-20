@@ -126,7 +126,7 @@ class PacienteResource extends JsonResource
     private function getCitas($paciente_id)
     {
 
-        $collection = Cita::with(['paciente', 'estado', 'tratamiento'])
+        $collection = Cita::with(['paciente', 'estado', 'tratamiento', 'facultativo'])
             ->paciente($paciente_id)
             ->where('estado_id', '<>', 4)
             ->where('facultativo_id', '<>', 3)
@@ -156,6 +156,7 @@ class PacienteResource extends JsonResource
                 'estado_id'    => $item->estado_id,
                 'nombre'       => $item->paciente->nombre,
                 'nombre_web'   => $item->tratamiento->nombre_web,
+                'facultativo'  => $item->facultativo_id == 1 ? $item->facultativo->nombre : null,
             ]);
         }
 

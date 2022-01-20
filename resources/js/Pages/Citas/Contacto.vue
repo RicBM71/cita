@@ -12,7 +12,7 @@
                         </v-list-item-icon>
                         <v-list-item-title class="font-weight-medium">
                             <p>L-J: de 9h a 14h - 16.30 a 20h</p>
-                            <p>Viernes: de 9h a 14:30</p>
+                            <p>Viernes: de 9h a 14:00</p>
                         </v-list-item-title>
                     </v-list-item>
                     <v-list-item>
